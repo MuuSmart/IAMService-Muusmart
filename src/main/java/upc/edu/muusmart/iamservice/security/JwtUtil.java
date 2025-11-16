@@ -3,11 +3,15 @@ package upc.edu.muusmart.iamservice.security;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Date;
+import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * Utility component for generating and validating JSON Web Tokens (JWTs).
@@ -93,8 +97,15 @@ public class JwtUtil {
      * @return a signed JWT as a {@code String}
      */
     public String generateToken(UserDetails userDetails) {
+        // Extraemos los roles del usuario autenticado
+        var roles = userDetails.getAuthorities().stream()
+                .map(authority -> authority.getAuthority())
+                .toList();
+
+        // Creamos el token con roles incluidos
         return Jwts.builder()
-                .setSubject(userDetails.getUsername())
+                .setSubject(userDetails.getUsername())        // "sub": nombre de usuario
+                .claim("roles", roles)                        // 👈 Agregamos roles aquí
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationMs))
                 .signWith(SignatureAlgorithm.HS256, jwtSecret.getBytes())
