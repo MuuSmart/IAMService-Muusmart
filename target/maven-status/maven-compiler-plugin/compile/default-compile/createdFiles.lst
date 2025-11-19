@@ -1,1 +1,14 @@
+upc/edu/muusmart/iamservice/service/UserService.class
+upc/edu/muusmart/iamservice/security/JwtUtil.class
+upc/edu/muusmart/iamservice/model/Role.class
+upc/edu/muusmart/iamservice/repository/UserRepository.class
+upc/edu/muusmart/iamservice/controller/AuthController.class
+upc/edu/muusmart/iamservice/model/AppUser$AppUserBuilder.class
+upc/edu/muusmart/iamservice/payload/AuthResponse.class
+upc/edu/muusmart/iamservice/security/JwtAuthenticationFilter.class
+upc/edu/muusmart/iamservice/model/AppUser.class
+upc/edu/muusmart/iamservice/security/SecurityConfig.class
+upc/edu/muusmart/iamservice/payload/LoginRequest.class
 upc/edu/muusmart/iamservice/IamServiceApplication.class
+upc/edu/muusmart/iamservice/payload/RegisterRequest.class
+upc/edu/muusmart/iamservice/service/CustomUserDetailsService.class
